@@ -1,0 +1,12 @@
+1) SELECT e.ename, d.dname FROM emp AS e INNER JOIN dept d ON d.deptno = e.deptno ORDER BY e.ename ASC;
+2) SELECT deptno, ename, mgr FROM emp;
+3) SELECT ename, (sal + 250.0) * 12 AS income FROM emp;
+4) SELECT ename FROM emp ORDER BY hiredate DESC;
+5) SELECT ename, job, sal, deptno FROM emp WHERE job = 'CLERK';
+6) SELECT * FROM emp WHERE comm > sal;
+7) SELECT * FROM emp WHERE sal BETWEEN 1000.00 AND 2000.00;
+8) SELECT * FROM emp WHERE ename LIKE 'S%';
+9) SELECT * FROM emp WHERE LENGTH(ename) = 4;
+10) SELECT * FROM emp WHERE mgr IS NULL;
+11) SELECT * FROM emp WHERE job = 'CLERK' AND (sal >= 1000.0 AND sal < 2000.0);
+12) SELECT * FROM emp WHERE deptno IN (10, 20) ORDER BY ename ASC;
