@@ -1,0 +1,14 @@
+1) SELECT e.ename, d.dname FROM emp e JOIN dept d ON d.deptno = e.deptno WHERE sal BETWEEN (SELECT losal FROM salgrade WHERE grade = 3) AND (SELECT hisal FROM salgrade WHERE grade = 3);
+2) SELECT e.ename, d.dname, s.grade FROM emp e JOIN dept d ON d.deptno = e.deptno JOIN salgrade s ON e.sal BETWEEN s.losal AND s.hisal; 
+3) SELECT e.ename, e.deptno FROM emp e WHERE e.sal < (SELECT sal FROM emp WHERE empno = e.mgr);
+4) SELECT e.job, MAX(e.sal) FROM emp e GROUP BY e.job;
+5) SELECT d.dname, AVG(e.sal) FROM emp e JOIN dept d ON d.deptno = e.deptno GROUP BY d.deptno HAVING COUNT(*) > 3;
+6) SELECT e.job, AVG(e.sal) FROM emp e GROUP BY e.job HAVING e.job != 'MANAGER';
+7) SELECT AVG(sal) FROM emp WHERE deptno IN (SELECT deptno FROM emp GROUP BY deptno HAVING COUNT(*) > 3);
+8) SELECT MAX(sal) - MIN(sal) FROM emp;
+9) SELECT s.grade, MAX(e.sal) FROM emp e JOIN salgrade s ON e.sal BETWEEN s.losal AND s.hisal GROUP BY s.grade; 
+10) SELECT e.sal FROM emp e GROUP BY e.sal HAVING COUNT(e.sal) > 1;
+11) SELECT AVG(e.sal) FROM emp e JOIN salgrade s ON e.sal BETWEEN s.losal AND s.hisal WHERE s.grade = 2; 
+12) SELECT e.mgr, MIN(sal) FROM emp e GROUP BY e.mgr HAVING MIN(sal) >= 1000 ORDER BY MIN(sal) ASC;
+13) SELECT e.mgr, MIN(sal) FROM emp e GROUP BY e.mgr HAVING MIN(sal) >= 1000 ORDER BY MIN(sal) ASC;
+14) SELECT AVG(e.sal), e.job, d.dname FROM emp e JOIN dept d ON d.deptno = e.deptno GROUP BY e.job, d.deptno;
