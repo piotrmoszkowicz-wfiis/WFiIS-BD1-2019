@@ -1,0 +1,24 @@
+1) SELECT ename FROM emp WHERE job = (SELECT job FROM emp WHERE ename = 'BLAKE');
+
+2) SELECT e.ename, e.deptno, e.sal FROM emp e
+JOIN (SELECT MIN(sal) as min_sal, deptno FROM emp GROUP BY deptno) a ON (e.deptno = a.deptno)
+WHERE e.sal = a.min_sal AND e.deptno = a.deptno;
+
+3) SELECT e.ename, e.deptno, e.sal FROM emp e
+JOIN (SELECT MIN(sal) as min_sal, deptno FROM emp GROUP BY deptno) a ON (e.deptno = a.deptno)
+WHERE e.sal = a.min_sal AND e.deptno = a.deptno;
+
+4) SELECT e.ename FROM emp e WHERE sal > ANY (SELECT MIN(sal) FROM emp GROUP BY deptno HAVING deptno = 30);
+
+5) SELECT e.ename FROM emp e WHERE sal > ALL (SELECT sal FROM emp WHERE deptno = 30);
+
+6) SELECT e.job FROM emp e WHERE sal = (SELECT MAX(sal) FROM emp);
+
+7) SELECT e.job FROM emp e WHERE EXISTS (SELECT empno FROM emp WHERE mgr = e.empno);
+
+8) SELECT e.*FROM emp e
+JOIN (SELECT MAX(hiredate) as min_hire, deptno FROM emp GROUP BY deptno) a ON (e.deptno = a.deptno)
+WHERE e.hiredate = a.min_hire AND e.deptno = a.deptno
+ORDER BY e.hiredate DESC;
+
+9) SELECT e.deptno, CAST(COUNT(e.deptno) AS NUMERIC(7, 2)) / CAST((SELECT COUNT(*) FROM emp) AS NUMERIC(7, 2)) FROM emp e GROUP BY e.deptno;
